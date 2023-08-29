@@ -13,16 +13,17 @@ namespace webApi.Controllers
     [Route("api/[controller]")]
     public class CitiesController : Controller
     {
+        /*
         private readonly ICitiesService _cityService;
 
         public CitiesController(ICitiesService cityService)
         {
             _cityService = cityService;
         }
-
+        */
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get([FromServices] ICitiesService _cityService)
         {
             return _cityService.GetCities();
         }
