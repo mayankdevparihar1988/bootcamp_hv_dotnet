@@ -13,19 +13,34 @@ namespace webApi.Controllers
     [Route("api/[controller]")]
     public class CitiesController : Controller
     {
-        /*
-        private readonly ICitiesService _cityService;
+     
+        private readonly ICitiesService _cityService1;
 
-        public CitiesController(ICitiesService cityService)
-        {
-            _cityService = cityService;
+        private readonly ICitiesService _cityService2;
+
+        private readonly ICitiesService _cityService3;
+
+
+        public CitiesController(ICitiesService cityService1, ICitiesService cityService2, ICitiesService cityService3) {
+
+          
+            _cityService1 = cityService1;
+            _cityService2 = cityService2;
+            _cityService3 = cityService3;
+
+
         }
-        */
+
+
+
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get([FromServices] ICitiesService _cityService)
+        public ActionResult<IEnumerable<string>> Get()
         {
-            return _cityService.GetCities();
+
+            var result = new { service1 = _cityService1.ServiceInstanceId(), service2 = _cityService2.ServiceInstanceId(), service3 = _cityService3.ServiceInstanceId(), cities = _cityService1.GetCities() };
+
+            return StatusCode(203, result);
         }
 
         // GET api/values/5

@@ -10,9 +10,21 @@ public class CityService : ICitiesService
 		private set;
 	}
 
-	public CityService()
+    private Guid _serviceInstanceId;
+
+    public Guid ServiceInstanceId()
+    {
+       
+            return _serviceInstanceId;
+        
+    }
+
+    public CityService()
 	{
-		_cities = new List<string>()
+
+        _serviceInstanceId = Guid.NewGuid();
+
+        _cities = new List<string>()
 		{
 			"Jabalpur",
 			"Mumbai",
